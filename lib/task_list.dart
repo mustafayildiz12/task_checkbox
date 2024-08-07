@@ -59,6 +59,13 @@ class _TaskListState extends State<TaskList> {
                         taskModel.progressValue =
                             checkedSubTasks / taskModel.subTasks.length;
                       });
+
+                      // eğer progress 1 ise checki true yapıyoruz
+                      if (taskModel.progressValue == 1) {
+                        setState(() {
+                          taskModel.isChecked = true;
+                        });
+                      }
                     });
                   },
                   child: Card(
@@ -77,7 +84,8 @@ class _TaskListState extends State<TaskList> {
                         ),
                         Expanded(child: Text(taskModel.title)),
                         CircleAvatar(
-                            child: Text(taskModel.progressValue.toStringAsFixed(2))),
+                            child: Text(
+                                taskModel.progressValue.toStringAsFixed(2))),
                         const SizedBox(
                           width: 20,
                         ),
